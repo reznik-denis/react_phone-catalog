@@ -1,0 +1,160 @@
+@import '../../../../style/main.scss';
+
+.nav {
+  position: absolute;
+  top: calc(100% + 1px);
+  left: 0;
+  transform: translateX(-100%);
+  z-index: 2;
+  height: calc(100vh - 48px);
+  width: 100%;
+  transition-property: transform;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: $main-color;
+
+  &__isOpen {
+    transform: translateX(0);
+  }
+
+  &__list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    margin-top: 32px;
+
+    @include on-tablet {
+      margin-left: 32px;
+      flex-direction: row;
+      margin-top: 0;
+    }
+
+    @include on-desktop {
+      margin-left: 48px;
+      gap: 64px;
+    }
+  }
+
+  &__link {
+    font-weight: 700;
+    position: relative;
+    color: $secondary-color;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 11px;
+    letter-spacing: 4%;
+    padding: 0;
+    margin: 0;
+    display: block;
+
+    @include hover(color, $primary-color);
+  }
+
+  &__is-active {
+    color: $primary-color;
+
+    &::after {
+      content: '';
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      background-color: $primary-color;
+      opacity: 1;
+
+      transition-property: opacity;
+
+      @include add-transition;
+
+      @include on-tablet {
+        bottom: -20px;
+      }
+
+      @include on-desktop {
+        bottom: -27px;
+      }
+    }
+  }
+
+  &__additional-list {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    box-shadow: $menu-box-shadow;
+
+    @include on-tablet() {
+      height: 48px;
+      justify-content: end;
+      box-shadow: none;
+    }
+
+    @include on-desktop {
+      height: 64px;
+    }
+  }
+
+  &__additional-link {
+    width: 50%;
+    position: relative;
+
+    @include add-transition;
+    @include on-tablet() {
+      width: 48px;
+    }
+    @include on-desktop{
+      width: 64px;
+    }
+  }
+
+  &__additional-is-active {
+    &::after {
+      content: '';
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-color: $primary-color;
+      opacity: 1;
+      z-index: 3;
+
+      transition-property: opacity;
+
+      @include add-transition;
+    }
+  }
+
+  &__additional-link:nth-child(2) {
+    box-shadow: $header-button-box-shadow;
+  }
+
+  @include on-tablet() {
+    &__additional-link:nth-child(1) {
+      box-shadow: $header-button-box-shadow;
+    }
+  }
+
+  &__additional-navLink {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__icon {
+    width: 15px;
+  }
+
+  @include add-transition;
+  @include on-tablet() {
+    position: static;
+    transform: translateX(0);
+    flex-direction: row;
+    height: inherit;
+  }
+}

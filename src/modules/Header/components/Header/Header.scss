@@ -1,0 +1,56 @@
+@import '../../../../style/main.scss';
+
+.header {
+  height: 48px;
+  width: 100%;
+  padding: 0 0 0 16px;
+  display: flex;
+  position: fixed;
+  z-index: 9999;
+  justify-content: space-between;
+  box-shadow: $header-box-shadow;
+  background-color: $main-color;
+
+  @include on-desktop() {
+    height: 64px;
+    padding: 0 0 0 24px;
+  }
+
+  &__logo {
+    width: 64px;
+    display: flex;
+    align-items: center;
+
+    @include on-desktop() {
+
+      width: 80px;
+    }
+  }
+
+  &__button-container {
+    width: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: $header-button-box-shadow;
+
+    @include on-tablet() {
+      display: none;
+    }
+  }
+
+  &__button {
+    background-color: inherit;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__button-icon {
+      width: 14px;
+    }
+  }
+}

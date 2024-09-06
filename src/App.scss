@@ -1,1 +1,7 @@
-// not empty
+@import './style/main.scss';
+
+.container {
+  padding-top: 100px;
+  @include content-padding-inline;
+}
+

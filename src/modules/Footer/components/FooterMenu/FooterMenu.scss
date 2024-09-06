@@ -1,0 +1,23 @@
+@import '../../../../style/main.scss';
+
+.footerMenu {
+  margin-top: 32px;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__link {
+    text-transform: uppercase;
+    font-weight: 700;
+    color: $secondary-color;
+    font-size: 12px;
+    line-height: 11px;
+    letter-spacing: 4%;
+    display: block;
+
+    @include hover(color, $primary-color);
+  }
+}

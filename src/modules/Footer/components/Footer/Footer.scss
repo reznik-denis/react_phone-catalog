@@ -1,0 +1,51 @@
+@import '../../../../style/main.scss';
+
+.footer {
+  @include content-padding-inline;
+
+  padding-top: 32px;
+  padding-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  &__logo {
+    width: 90px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__toTop {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 11px;
+    color: $secondary-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include hover(color, $primary-color);
+
+    &::after {
+      content: '';
+      width: 32px;
+      height: 32px;
+      display: block;
+      border: 1px solid $secondary-color;
+      margin-left: 16px;
+      background-image: url('../../../../../public/img/icons/ArrowUp.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      transition-duration: 500ms;
+      transition-timing-function: cubic-bezier(0, 0.98, 0.79, 0.97);
+      transition-property: border;
+    }
+
+    &:hover::after {
+      border: 1px solid $primary-color;
+    }
+  }
+}
