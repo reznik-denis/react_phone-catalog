@@ -6,7 +6,8 @@ import {
   Routes,
 } from 'react-router-dom';
 import { App } from './App';
-import { NotFoundPage } from './modules/NotFoundPage/NotFoundPage';
+import { NotFoundPage } from './modules/NotFoundPage';
+import { ProductPage } from './modules/ProductPage';
 
 export const Root: React.FC = () => {
   return (
@@ -16,11 +17,11 @@ export const Root: React.FC = () => {
           <Route path="/home" element={<Navigate to="/" replace />} />
           <Route index element={<></>} />
 
-          <Route path="/phones" element={<></>} />
+          <Route path="/phones" element={<ProductPage />} />
 
-          <Route path="/tablets" element={<></>} />
+          <Route path="/tablets" element={<ProductPage />} />
 
-          <Route path="/accessories" element={<></>} />
+          <Route path="/accessories" element={<ProductPage />} />
 
           <Route path="/product" element={<></>}>
             <Route index element={<></>} />

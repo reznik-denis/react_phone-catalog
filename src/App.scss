@@ -1,7 +1,7 @@
-@import './style/main.scss';
+@import './style/main';
 
 .container {
   padding-top: 100px;
+
   @include content-padding-inline;
 }
-

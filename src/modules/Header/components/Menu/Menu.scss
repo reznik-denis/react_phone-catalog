@@ -1,4 +1,4 @@
-@import '../../../../style/main.scss';
+@import '../../../../style/main';
 
 .nav {
   position: absolute;
@@ -84,9 +84,9 @@
     width: 100%;
     height: 64px;
     display: flex;
-    box-shadow: $menu-box-shadow;
+    box-shadow: $box-shadow-top;
 
-    @include on-tablet() {
+    @include on-tablet {
       height: 48px;
       justify-content: end;
       box-shadow: none;
@@ -102,10 +102,12 @@
     position: relative;
 
     @include add-transition;
-    @include on-tablet() {
+
+    @include on-tablet {
       width: 48px;
     }
-    @include on-desktop{
+
+    @include on-desktop {
       width: 64px;
     }
   }
@@ -132,7 +134,7 @@
     box-shadow: $header-button-box-shadow;
   }
 
-  @include on-tablet() {
+  @include on-tablet {
     &__additional-link:nth-child(1) {
       box-shadow: $header-button-box-shadow;
     }
@@ -151,7 +153,8 @@
   }
 
   @include add-transition;
-  @include on-tablet() {
+
+  @include on-tablet {
     position: static;
     transform: translateX(0);
     flex-direction: row;

@@ -1,4 +1,4 @@
-@import '../../../../style/main.scss';
+@import '../../style/main';
 
 .header {
   height: 48px;
@@ -11,7 +11,7 @@
   box-shadow: $header-box-shadow;
   background-color: $main-color;
 
-  @include on-desktop() {
+  @include on-desktop {
     height: 64px;
     padding: 0 0 0 24px;
   }
@@ -21,8 +21,7 @@
     display: flex;
     align-items: center;
 
-    @include on-desktop() {
-
+    @include on-desktop {
       width: 80px;
     }
   }
@@ -34,7 +33,7 @@
     align-items: center;
     box-shadow: $header-button-box-shadow;
 
-    @include on-tablet() {
+    @include on-tablet {
       display: none;
     }
   }

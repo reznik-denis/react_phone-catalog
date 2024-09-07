@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Header.scss';
-import { Menu } from '../Menu';
-import { Logo } from '../../../shared/components/Logo';
+import { Menu } from './components/Menu';
+import { Logo } from '../shared/components/Logo';
 
 export const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);

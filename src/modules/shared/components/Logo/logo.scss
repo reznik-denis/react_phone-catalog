@@ -1,4 +1,4 @@
-@import '../../../../style/main.scss';
+@import '../../../../style/main';
 
 .logo {
   &__link {
@@ -11,7 +11,7 @@
     width: 100%;
     display: block;
 
-    @include on-desktop() {
+    @include on-desktop {
       width: 100%;
     }
   }

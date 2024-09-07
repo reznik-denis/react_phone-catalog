@@ -1,13 +1,24 @@
-@import '../../../../style/main.scss';
+@import '../../style/main';
 
 .footer {
-  @include content-padding-inline;
+  box-shadow: $box-shadow-top;
+  background-color: $main-color;
+  padding: 0;
 
-  padding-top: 32px;
-  padding-bottom: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+  &__container {
+    @include content-padding-inline;
+
+    padding-top: 32px;
+    padding-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    @include on-tablet {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
 
   &__logo {
     width: 90px;
@@ -29,6 +40,10 @@
 
     @include hover(color, $primary-color);
 
+    @include on-tablet {
+      line-height: 15px;
+    }
+
     &::after {
       content: '';
       width: 32px;
@@ -36,7 +51,7 @@
       display: block;
       border: 1px solid $secondary-color;
       margin-left: 16px;
-      background-image: url('../../../../../public/img/icons/ArrowUp.svg');
+      background-image: url('../../../public/img/icons/ArrowUp.svg');
       background-repeat: no-repeat;
       background-position: center;
       transition-duration: 500ms;

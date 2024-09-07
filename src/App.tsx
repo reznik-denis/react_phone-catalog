@@ -1,33 +1,37 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './App.scss';
-import { getPhoneById } from './api/productById';
-import { Phone } from './types/Phone';
-import { Product } from './types/Product';
-import { getProducts } from './api/products';
-import { Header } from './modules/Header/components/Header';
-import { Footer } from './modules/Footer/components/Footer';
+// import { getPhoneById } from './api/productById';
+// import { Phone } from './types/Phone';
+// import { Product } from './types/Product';
+// import { getProducts } from './api/products';
+import { Header } from './modules/Header';
+import { Footer } from './modules/Footer';
 import { Outlet } from 'react-router-dom';
+import { useDispatch } from './castomHuks/useDispatch';
+import { getProducts } from './api/products';
 
 export const App = () => {
-  const [elem, setElem] = useState<Phone | undefined>(undefined);
-  const [elements, setElements] = useState<Product[] | undefined>(undefined);
+  // const [elem, setElem] = useState<Phone | undefined>(undefined);
+  // const [elements, setElements] = useState<Product[] | undefined>(undefined);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getPhoneById('apple-iphone-11-128gb-black')
-      .then(data => setElem(data))
-      .catch(() => console.log('some wrong'));
-    getProducts().then(data => setElements(data));
-  }, []);
-
-  console.log(elem, elements);
+    getProducts()
+      .then(data => dispatch({ type: 'getProducts', payload: data }))
+      .catch();
+  }, [dispatch]);
 
   return (
     <div className="App">
+      <h1></h1>
       <Header />
-      <div className="container">
-        <h1>Product Catalog</h1>
-        <Outlet />
-      </div>
+
+      <main>
+        <div className="container">
+          <Outlet />
+        </div>
+      </main>
+
       <Footer />
     </div>
   );

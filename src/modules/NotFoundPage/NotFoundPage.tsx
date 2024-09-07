@@ -1,10 +1,12 @@
+import './NotFoundPage.scss';
+
 export const NotFoundPage = () => {
   return (
     <div className="notFoundPage">
-      <h3>Page not found</h3>
+      <h2>Page not found</h2>
       <img
         src="./img/page-not-found.png"
-        alt="close menu"
+        alt="page not found"
         className="notFoundPage__image"
       />
     </div>

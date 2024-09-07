@@ -1,12 +1,26 @@
-@import '../../../../style/main.scss';
+@import '../../../../style/main';
 
 .footerMenu {
-  margin-top: 32px;
+  @include on-tablet {
+    display: flex;
+    align-items: center;
+  }
 
   &__list {
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+    @include on-tablet {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 13px;
+    }
+
+    @include on-desktop {
+      gap: 108px;
+    }
   }
 
   &__link {
