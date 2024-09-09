@@ -1,0 +1,70 @@
+@import '../../../../style/main';
+
+.pagination {
+  margin-top: 40px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-inline: auto;
+  width: 100%;
+  flex-wrap: wrap;
+
+  &__arrow-left {
+    width: 23px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $secondary-color;
+    margin-right: 8px;
+
+    @include hover(border, 1px solid $primary-color);
+
+    @include on-tablet {
+      width: 32px;
+    }
+  }
+
+  &__item {
+    width: 23px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $elements-color;
+    font-size: 14px;
+    color: $primary-color !important;
+    line-height: 21px;
+
+    @include on-tablet {
+      width: 32px;
+    }
+
+    @include hover(box-shadow, 0 3px 13px 0 rgba(23, 32, 49, 0.4));
+  }
+
+  &__active-item {
+    background-color: $primary-color;
+    color: $main-color !important;
+  }
+
+  &__arrow-right {
+    transform: rotate(180deg);
+    margin-right: 0;
+    margin-left: 8px;
+  }
+
+  &__icon-arrow-left {
+    fill: $primary-color;
+  }
+
+  &__disabled {
+    fill: $secondary-color;
+  }
+
+  &__disabled-link {
+    pointer-events: none;
+    cursor: default;
+  }
+}

@@ -3,12 +3,15 @@ import './ProductPage.scss';
 import { ErrorPage } from '../ErrorPage';
 import { Loader } from '../shared/components/Loader';
 import { NoProductsPage } from '../NoProductsPage';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { ProductList } from '../shared/components/ProductList';
 import { useGlobalState } from '../../castomHuks/useGlobalState';
 import { TypeProducts } from './types/typeProducts';
 import { filteredProducts } from './utils/filteredProducts';
 import { Product } from '../../types/Product';
+import { Pagination } from './components/Pagination';
+import { SearchParams } from './components/SearchParams';
+import { PerPage } from './types/perPage';
 
 export const ProductPage: React.FC = () => {
   const type = useLocation().pathname.slice(1);
@@ -16,6 +19,18 @@ export const ProductPage: React.FC = () => {
   const [filterProducts, setFilteredProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [searchParams] = useSearchParams();
+
+  const currentPage = Number(searchParams.get('page'));
+  const perPage = searchParams.get('perPage') || PerPage.ALL;
+  const perPageForPagination =
+    perPage === PerPage.ALL ? filterProducts.length : Number(perPage);
+
+  const startEl = (currentPage - 1) * perPageForPagination + 1;
+  const endEl =
+    currentPage * perPageForPagination > filterProducts.length
+      ? filterProducts.length
+      : currentPage * perPageForPagination;
 
   useEffect(() => {
     setLoading(true);
@@ -59,7 +74,11 @@ export const ProductPage: React.FC = () => {
         <div className="products__catalog">
           <h1 className="products__title">{namePage}</h1>
           <p className="products__count">{`${filterProducts.length} models`}</p>
-          <ProductList products={filterProducts} />
+          <SearchParams />
+          <ProductList products={filterProducts.slice(startEl - 1, endEl)} />
+          {perPage !== PerPage.ALL && (
+            <Pagination total={filterProducts.length} />
+          )}
         </div>
       )}
     </div>

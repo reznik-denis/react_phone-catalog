@@ -1,0 +1,7 @@
+@import '../../../../style/main';
+
+.SearchParams {
+  margin-bottom: 24px;
+
+  @include page-grid;
+}

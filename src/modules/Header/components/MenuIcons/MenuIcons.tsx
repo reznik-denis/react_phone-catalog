@@ -25,4 +25,4 @@ export const MenuIcons: React.FC<Props> = ({ namePage }) => {
       )}
     </div>
   );
-}
+};
