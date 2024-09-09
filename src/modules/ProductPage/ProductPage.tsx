@@ -12,6 +12,7 @@ import { Product } from '../../types/Product';
 import { Pagination } from './components/Pagination';
 import { SearchParams } from './components/SearchParams';
 import { PerPage } from './types/perPage';
+import { sortingProducts } from './utils/sortedProducts';
 
 export const ProductPage: React.FC = () => {
   const type = useLocation().pathname.slice(1);
@@ -20,6 +21,7 @@ export const ProductPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [searchParams] = useSearchParams();
+  const sortType = searchParams.get('sort');
 
   const currentPage = Number(searchParams.get('page'));
   const perPage = searchParams.get('perPage') || PerPage.ALL;
@@ -62,6 +64,8 @@ export const ProductPage: React.FC = () => {
 
   const namePage = type.slice(0, 1).toUpperCase() + type.slice(1);
 
+  const sortedProducts = sortingProducts(sortType, filterProducts);
+
   return (
     <div className="products">
       {loading ? (
@@ -75,7 +79,7 @@ export const ProductPage: React.FC = () => {
           <h1 className="products__title">{namePage}</h1>
           <p className="products__count">{`${filterProducts.length} models`}</p>
           <SearchParams />
-          <ProductList products={filterProducts.slice(startEl - 1, endEl)} />
+          <ProductList products={sortedProducts.slice(startEl - 1, endEl)} />
           {perPage !== PerPage.ALL && (
             <Pagination total={filterProducts.length} />
           )}

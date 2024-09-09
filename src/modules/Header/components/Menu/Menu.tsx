@@ -11,7 +11,7 @@ type Props = {
   setIsOpen: (isOpen: boolean) => void;
 };
 
-export const Menu: React.FC<Props> = ({ isOpen, setIsOpen }) => {
+export const Menu: React.FC<Props> = React.memo(({ isOpen, setIsOpen }) => {
   return (
     <div className={classNames('nav', { nav__isOpen: isOpen })}>
       <ul className="nav__list">
@@ -56,4 +56,6 @@ export const Menu: React.FC<Props> = ({ isOpen, setIsOpen }) => {
       </ul>
     </div>
   );
-};
+});
+
+Menu.displayName = 'Menu';

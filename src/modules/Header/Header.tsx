@@ -3,7 +3,7 @@ import './Header.scss';
 import { Menu } from './components/Menu';
 import { Logo } from '../shared/components/Logo';
 
-export const Header: React.FC = () => {
+export const Header: React.FC = React.memo(() => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -34,4 +34,6 @@ export const Header: React.FC = () => {
       <Menu isOpen={isOpen} setIsOpen={setIsOpen} />
     </header>
   );
-};
+});
+
+Header.displayName = 'Header';

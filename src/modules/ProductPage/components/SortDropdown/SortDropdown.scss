@@ -1,11 +1,11 @@
 @import '../../../../style/main';
 
-.PerPageDropdown {
+.Sort {
   grid-column: span 2;
   width: 100%;
 
   @include on-tablet {
-    grid-column: span 3;
+    grid-column: span 4;
   }
 
   &__lable {
@@ -46,6 +46,7 @@
       border-color: $icons-color;
       outline: none;
       padding: 10px 12px;
+      overflow: hidden;
 
       @include hover(border-color, $secondary-color);
 
@@ -54,7 +55,7 @@
         box-shadow: none !important;
       }
 
-      &:focus .PerPageDropdown__select-icon {
+      &:focus .Sort__select-icon {
         transform: rotate(180deg);
       }
     }

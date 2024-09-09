@@ -5,7 +5,7 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import { PerPage } from '../../types/perPage';
 import classNames from 'classnames';
 
-export const PerPageDropdown: React.FC = () => {
+export const PerPageDropdown: React.FC = React.memo(() => {
   const type = useLocation().pathname.slice(1);
   const [searchParams, setSearchParams] = useSearchParams();
   const [isOpenPerPage, setIsOpenPerPage] = useState(false);
@@ -49,7 +49,6 @@ export const PerPageDropdown: React.FC = () => {
           'is-active': isOpenPerPage,
         })}
         ref={dropdownRef}
-        id="perPage"
       >
         <div className="dropdown-trigger PerPageDropdown__select-trigger">
           <button
@@ -88,4 +87,6 @@ export const PerPageDropdown: React.FC = () => {
       </div>
     </div>
   );
-};
+});
+
+PerPageDropdown.displayName = 'PerPageDropdown';

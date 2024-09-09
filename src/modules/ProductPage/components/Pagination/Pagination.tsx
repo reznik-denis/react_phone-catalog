@@ -5,12 +5,13 @@ import { useSearchParams } from 'react-router-dom';
 import { ArrowLeft } from './icons/ArrowLeft';
 import { PerPage } from '../../types/perPage';
 import { visiblePages } from './utils/visiblePages';
+import React from 'react';
 
 type Props = {
   total: number;
 };
 
-export const Pagination: React.FC<Props> = ({ total }) => {
+export const Pagination: React.FC<Props> = React.memo(({ total }) => {
   const [searchParams] = useSearchParams();
   const currentPage = Number(searchParams.get('page')) || 1;
   const perPage = searchParams.get('perPage') || PerPage.ALL;
@@ -50,18 +51,6 @@ export const Pagination: React.FC<Props> = ({ total }) => {
           </li>
         ),
       )}
-      {/* {pages.map(page => (
-        <li key={page}>
-          <SearchLink
-            params={{ page: `${page}` }}
-            className={cn('pagination__item', {
-              'pagination__active-item': currentPage === page,
-            })}
-          >
-            {page}
-          </SearchLink>
-        </li>
-      ))} */}
       <li>
         <SearchLink
           params={{ page: `${currentPage + 1}` }}
@@ -75,4 +64,6 @@ export const Pagination: React.FC<Props> = ({ total }) => {
       </li>
     </ul>
   );
-};
+});
+
+Pagination.displayName = 'Pagination';
