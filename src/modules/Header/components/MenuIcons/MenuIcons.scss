@@ -1,0 +1,32 @@
+@import '../../../../style/main';
+
+.MenuIcons {
+  &__icon {
+    width: 15px;
+  }
+
+  &__icon-container {
+    width: 15px;
+    height: 15px;
+    position: relative;
+  }
+
+  &__additional-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    border: 1px solid $main-color;
+    border-radius: 50%;
+    background-color: $red-color;
+    color: $main-color;
+    width: 14px;
+    height: 14px;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

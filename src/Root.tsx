@@ -8,6 +8,7 @@ import {
 import { App } from './App';
 import { NotFoundPage } from './modules/NotFoundPage';
 import { ProductPage } from './modules/ProductPage';
+import { FavoritesPage } from './modules/FavoritesPage';
 
 export const Root: React.FC = () => {
   return (
@@ -28,7 +29,7 @@ export const Root: React.FC = () => {
             <Route path=":productId" element={<></>} />
           </Route>
 
-          <Route path="/favorites" element={<></>} />
+          <Route path="/favorites" element={<FavoritesPage />} />
 
           <Route path="/cart" element={<></>} />
 

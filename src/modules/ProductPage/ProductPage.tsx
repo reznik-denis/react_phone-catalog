@@ -4,7 +4,7 @@ import { ErrorPage } from '../ErrorPage';
 import { Loader } from '../shared/components/Loader';
 import { NoProductsPage } from '../NoProductsPage';
 import { useLocation } from 'react-router-dom';
-import { ProductList } from './components/ProductList';
+import { ProductList } from '../shared/components/ProductList';
 import { useGlobalState } from '../../castomHuks/useGlobalState';
 import { TypeProducts } from './types/typeProducts';
 import { filteredProducts } from './utils/filteredProducts';
@@ -40,7 +40,7 @@ export const ProductPage: React.FC = () => {
 
     const timerId = setTimeout(() => {
       setLoading(false);
-    }, 300);
+    }, 350);
 
     return () => clearTimeout(timerId);
   }, [type, products]);
@@ -49,12 +49,16 @@ export const ProductPage: React.FC = () => {
 
   return (
     <div className="products">
-      {loading && <Loader />}
-      {error && <ErrorPage />}
-      {!error && filterProducts.length === 0 && <NoProductsPage type={type} />}
-      {!loading && !error && (
-        <div className="catalog">
-          <h1>{namePage}</h1>
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <ErrorPage />
+      ) : filterProducts.length === 0 ? (
+        <NoProductsPage type={type} />
+      ) : (
+        <div className="products__catalog">
+          <h1 className="products__title">{namePage}</h1>
+          <p className="products__count">{`${filterProducts.length} models`}</p>
           <ProductList products={filterProducts} />
         </div>
       )}

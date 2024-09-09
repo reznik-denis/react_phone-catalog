@@ -1,11 +1,14 @@
 import React from 'react';
-import { RootState } from '../types/RootState';
-import { Action } from '../types/Action';
+import { RootState } from './types/RootState';
+import { Action } from './types/Action';
 import { reducer } from './Reduser';
 
 const initialState: RootState = {
   products: [],
   isLoading: true,
+  notificationAddCart: false,
+  cart: [],
+  favorites: [],
 };
 
 export const StateContext = React.createContext<RootState>(initialState);

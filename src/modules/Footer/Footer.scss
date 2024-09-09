@@ -4,6 +4,11 @@
   box-shadow: $box-shadow-top;
   background-color: $main-color;
   padding: 0;
+  margin-top: 64px;
+
+  @include on-desktop {
+    margin-top: 80px;
+  }
 
   &__container {
     @include content-padding-inline;

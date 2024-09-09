@@ -4,6 +4,7 @@ import './Menu.scss';
 import classNames from 'classnames';
 import { Pages } from '../../types/pages';
 import { AdditionalPages } from '../../types/additionalPages';
+import { MenuIcons } from '../MenuIcons';
 
 type Props = {
   isOpen: boolean;
@@ -48,11 +49,7 @@ export const Menu: React.FC<Props> = ({ isOpen, setIsOpen }) => {
               }}
               onClick={() => setIsOpen(false)}
             >
-              <img
-                className="nav__icon"
-                src={`./img/icons/${namePage}.svg`}
-                alt={namePage}
-              />
+              <MenuIcons namePage={namePage} />
             </NavLink>
           </li>
         ))}

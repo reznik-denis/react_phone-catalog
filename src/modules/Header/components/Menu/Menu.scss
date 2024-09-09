@@ -148,10 +148,6 @@
     align-items: center;
   }
 
-  &__icon {
-    width: 15px;
-  }
-
   @include add-transition;
 
   @include on-tablet {
