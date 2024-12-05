@@ -7,7 +7,7 @@ import { localStorageService } from '../../utils/lockalStorageService';
 import { ActionButton } from '../../types/ActionButton';
 import { Keys } from '../../types/Constants';
 import classNames from 'classnames';
-import { FavoritesIcon } from '../../icons/Favorites/FavoritesIcon';
+import { FavoritesIcon } from '../../icons/FavoritesIcon';
 
 type Props = {
   product: Product;

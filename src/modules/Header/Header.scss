@@ -20,6 +20,7 @@
     width: 64px;
     display: flex;
     align-items: center;
+    order: 1;
 
     @include on-desktop {
       width: 80px;
@@ -32,6 +33,7 @@
     justify-content: center;
     align-items: center;
     box-shadow: $header-button-box-shadow;
+    order: 3;
 
     @include on-tablet {
       display: none;

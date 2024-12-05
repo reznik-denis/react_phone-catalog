@@ -7,6 +7,8 @@ export const reducer = (state: RootState, action: Action) => {
       return { ...state, products: action.payload };
     case 'isLoading':
       return { ...state, isLoading: action.payload };
+    case 'isError':
+      return { ...state, isError: action.payload };
     case 'isNotificationAddCart':
       return { ...state, notificationAddCart: action.payload };
     case 'addCart':

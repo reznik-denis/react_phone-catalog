@@ -14,6 +14,10 @@
   justify-content: space-between;
   background-color: $main-color;
 
+  @include on-tablet {
+    order: 2;
+  }
+
   &__isOpen {
     transform: translateX(0);
   }
@@ -30,6 +34,7 @@
       margin-left: 32px;
       flex-direction: row;
       margin-top: 0;
+      margin-right: 10px;
     }
 
     @include on-desktop {
@@ -132,6 +137,10 @@
 
   &__additional-link:nth-child(2) {
     box-shadow: $header-button-box-shadow;
+
+    @include on-tablet {
+      box-shadow: $header-button-doble-box-shadow;
+    }
   }
 
   @include on-tablet {

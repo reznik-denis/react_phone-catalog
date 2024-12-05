@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './ProductPage.scss';
 import { ErrorPage } from '../ErrorPage';
 import { Loader } from '../shared/components/Loader';
@@ -16,12 +16,13 @@ import { sortingProducts } from './utils/sortedProducts';
 
 export const ProductPage: React.FC = () => {
   const type = useLocation().pathname.slice(1);
-  const { products } = useGlobalState();
+  const { products, isLoading, isError } = useGlobalState();
   const [filterProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const currentProducts = useRef<Product[]>([]);
+
   const [searchParams] = useSearchParams();
   const sortType = searchParams.get('sort');
+  const searchQuery = searchParams.get('query');
 
   const currentPage = Number(searchParams.get('page'));
   const perPage = searchParams.get('perPage') || PerPage.ALL;
@@ -35,32 +36,31 @@ export const ProductPage: React.FC = () => {
       : currentPage * perPageForPagination;
 
   useEffect(() => {
-    setLoading(true);
-    switch (type) {
-      case 'phones':
-        setFilteredProducts(filteredProducts(products, TypeProducts.PHONES));
-        break;
-      case 'tablets':
-        setFilteredProducts(filteredProducts(products, TypeProducts.TABLETS));
-        break;
-      case 'accessories':
-        setFilteredProducts(
-          filteredProducts(products, TypeProducts.ACCESSORIES),
-        );
-        break;
-      default:
-        setLoading(false);
-        setError(true);
+    if (!isLoading) {
+      const data = filteredProducts(products, type as TypeProducts);
 
-        return;
+      setFilteredProducts(data);
+      currentProducts.current = data;
+    }
+  }, [type, products, isLoading]);
+
+  useEffect(() => {
+    if (!searchQuery) {
+      setFilteredProducts(currentProducts.current);
+
+      return;
     }
 
+    const searchProducts = currentProducts.current.filter(product =>
+      product.name.toLowerCase().includes(searchQuery.toLowerCase().trim()),
+    );
+
     const timerId = setTimeout(() => {
-      setLoading(false);
-    }, 350);
+      setFilteredProducts(searchProducts);
+    }, 500);
 
     return () => clearTimeout(timerId);
-  }, [type, products]);
+  }, [searchQuery]);
 
   const namePage = type.slice(0, 1).toUpperCase() + type.slice(1);
 
@@ -68,20 +68,24 @@ export const ProductPage: React.FC = () => {
 
   return (
     <div className="products">
-      {loading ? (
+      {isLoading ? (
         <Loader />
-      ) : error ? (
+      ) : isError ? (
         <ErrorPage />
-      ) : filterProducts.length === 0 ? (
+      ) : currentProducts.current.length === 0 ? (
         <NoProductsPage type={type} />
       ) : (
         <div className="products__catalog">
           <h1 className="products__title">{namePage}</h1>
-          <p className="products__count">{`${filterProducts.length} models`}</p>
+          <p className="products__count">{`${sortedProducts.length} models`}</p>
           <SearchParams />
-          <ProductList products={sortedProducts.slice(startEl - 1, endEl)} />
+          {sortedProducts.length > 0 ? (
+            <ProductList products={sortedProducts.slice(startEl - 1, endEl)} />
+          ) : (
+            <div>{`There are no ${type} matching the query`}</div>
+          )}
           {perPage !== PerPage.ALL && (
-            <Pagination total={filterProducts.length} />
+            <Pagination total={sortedProducts.length} />
           )}
         </div>
       )}

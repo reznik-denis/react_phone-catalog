@@ -4,7 +4,6 @@ import { Header } from './modules/Header';
 import { Footer } from './modules/Footer';
 import { Outlet } from 'react-router-dom';
 import { useDispatch } from './castomHuks/useDispatch';
-import { getProducts } from './api/products';
 // eslint-disable-next-line max-len
 import { getLocalStorageFormKey } from './modules/shared/utils/getLocalStorageFromKey';
 import { Keys } from './modules/shared/types/Constants';
@@ -13,9 +12,6 @@ export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getProducts()
-      .then(data => dispatch({ type: 'getProducts', payload: data }))
-      .catch();
     dispatch({
       type: 'getCartFromLS',
       payload: getLocalStorageFormKey(Keys.CART_KEY),
@@ -31,7 +27,7 @@ export const App = () => {
       <Header />
 
       <main>
-        <h1></h1>
+        <h1 className="title">Product Catalog</h1>
         <div className="container">
           <Outlet />
         </div>

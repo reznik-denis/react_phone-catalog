@@ -1,0 +1,30 @@
+@import '../../../../style/main';
+
+.Search {
+  order: 2;
+  border-bottom: none !important;
+
+  @include on-tablet {
+    order: 3;
+  }
+
+  &__input {
+    display: flex;
+    align-items: center;
+    border-radius: 0;
+    border-color: $elements-color;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    font-family: Mont, sans-serif;
+
+    &:focus {
+      border-color: $primary-color;
+      box-shadow: none;
+    }
+  }
+
+  &__icon {
+    top: -2px !important;
+  }
+}

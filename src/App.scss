@@ -1,7 +1,14 @@
 @import './style/main';
 
 .container {
-  padding-top: 100px;
+  padding-top: 72px;
 
   @include content-padding-inline;
+}
+
+.title {
+  visibility: hidden;
+  padding: 0;
+  margin: 0 !important;
+  font-size: 0;
 }

@@ -6,6 +6,7 @@ import { reducer } from './Reduser';
 const initialState: RootState = {
   products: [],
   isLoading: true,
+  isError: false,
   notificationAddCart: false,
   cart: [],
   favorites: [],

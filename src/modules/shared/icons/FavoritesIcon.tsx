@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActionButton } from '../../types/ActionButton';
+import { ActionButton } from '../types/ActionButton';
 
 type Props = {
   action: ActionButton;

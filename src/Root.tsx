@@ -9,6 +9,7 @@ import { App } from './App';
 import { NotFoundPage } from './modules/NotFoundPage';
 import { ProductPage } from './modules/ProductPage';
 import { FavoritesPage } from './modules/FavoritesPage';
+import { HomePage } from './modules/HomePage';
 
 export const Root: React.FC = () => {
   return (
@@ -16,7 +17,7 @@ export const Root: React.FC = () => {
       <Routes>
         <Route path="/" element={<App />}>
           <Route path="/home" element={<Navigate to="/" replace />} />
-          <Route index element={<></>} />
+          <Route index element={<HomePage />} />
 
           <Route path="/phones" element={<ProductPage />} />
 
